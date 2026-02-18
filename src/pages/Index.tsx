@@ -6,6 +6,7 @@ import SectionHeading from "@/components/SectionHeading";
 import CourseCard from "@/components/CourseCard";
 import TestimonialCard from "@/components/TestimonialCard";
 import CTASection from "@/components/CTASection";
+import UpcomingSection from "@/components/UpcomingSection";
 import Footer from "@/components/Footer";
 
 const courses = [
@@ -97,6 +98,8 @@ const Index = () => {
             </div>
           </div>
         </section>
+
+        <UpcomingSection />
 
         <CTASection />
       </main>

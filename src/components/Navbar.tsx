@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Menu, X, Sun, Moon } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useTheme } from "./ThemeProvider";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
@@ -44,11 +45,11 @@ const Navbar = () => {
           >
             {theme === "light" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
           </button>
-          <Button variant="ghost" size="sm" className="font-body text-sm">
-            Login
+          <Button variant="ghost" size="sm" className="font-body text-sm" asChild>
+            <Link to="/login">Login</Link>
           </Button>
-          <Button size="sm" className="font-body text-sm">
-            Start Learning
+          <Button size="sm" className="font-body text-sm" asChild>
+            <Link to="/courses">Start Learning</Link>
           </Button>
         </div>
 
@@ -81,10 +82,12 @@ const Navbar = () => {
                   </a>
                 ))}
                 <hr className="border-border" />
-                <Button variant="ghost" className="justify-start font-body">
-                  Login
+                <Button variant="ghost" className="justify-start font-body" asChild>
+                  <Link to="/login">Login</Link>
                 </Button>
-                <Button className="font-body">Start Learning</Button>
+                <Button className="font-body" asChild>
+                  <Link to="/courses">Start Learning</Link>
+                </Button>
               </div>
             </SheetContent>
           </Sheet>
