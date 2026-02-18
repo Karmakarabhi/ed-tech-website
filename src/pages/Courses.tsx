@@ -1,54 +1,8 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import SectionHeading from "@/components/SectionHeading";
 import CourseCard from "@/components/CourseCard";
 import { motion } from "framer-motion";
-
-const allCourses = [
-  {
-    title: "The Anxiety Blueprint",
-    description:
-      "A 6-week deep dive into understanding, managing, and reframing anxiety using CBT frameworks and journaling protocols.",
-    price: "₹2,999",
-    category: "CBT & Anxiety",
-    featured: true,
-  },
-  {
-    title: "Emotional Intelligence for Men",
-    description:
-      "Learn to identify, process, and articulate emotions without suppression. Practical frameworks for daily life.",
-    price: "₹1,999",
-    category: "Emotional Mastery",
-  },
-  {
-    title: "Discipline & Identity",
-    description:
-      "Build lasting habits rooted in self-understanding rather than willpower. A psychology-first approach to discipline.",
-    price: "₹2,499",
-    category: "Personal Growth",
-  },
-  {
-    title: "Shadow Work Fundamentals",
-    description:
-      "Explore Jungian shadow work concepts to confront hidden patterns, heal inner conflicts, and integrate your full personality.",
-    price: "₹3,499",
-    category: "Depth Psychology",
-  },
-  {
-    title: "Stoic Resilience",
-    description:
-      "Ancient Stoic philosophy meets modern psychology. Build mental toughness through practical daily exercises.",
-    price: "₹1,499",
-    category: "Philosophy",
-  },
-  {
-    title: "Relationships & Attachment Styles",
-    description:
-      "Understand your attachment patterns and build healthier, more conscious relationships using research-backed frameworks.",
-    price: "₹2,999",
-    category: "Relationships",
-  },
-];
+import { allCourses } from "@/data/courses";
 
 const Courses = () => {
   return (
@@ -82,7 +36,15 @@ const Courses = () => {
           <div className="container mx-auto px-6 lg:px-8">
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {allCourses.map((course) => (
-                <CourseCard key={course.title} {...course} />
+                <CourseCard
+                  key={course.slug}
+                  slug={course.slug}
+                  title={course.title}
+                  description={course.description}
+                  price={course.price}
+                  category={course.category}
+                  featured={course.featured}
+                />
               ))}
             </div>
           </div>

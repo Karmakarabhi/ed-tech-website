@@ -11,6 +11,7 @@ import Footer from "@/components/Footer";
 
 const courses = [
   {
+    slug: "the-anxiety-blueprint",
     title: "The Anxiety Blueprint",
     description:
       "A 6-week deep dive into understanding, managing, and reframing anxiety using CBT frameworks and journaling protocols.",
@@ -19,6 +20,7 @@ const courses = [
     featured: true,
   },
   {
+    slug: "emotional-intelligence-for-men",
     title: "Emotional Intelligence for Men",
     description:
       "Learn to identify, process, and articulate emotions without suppression. Practical frameworks for daily life.",
@@ -26,6 +28,7 @@ const courses = [
     category: "Emotional Mastery",
   },
   {
+    slug: "discipline-and-identity",
     title: "Discipline & Identity",
     description:
       "Build lasting habits rooted in self-understanding rather than willpower. A psychology-first approach to discipline.",

@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 
 interface CourseCardProps {
+  slug?: string;
   title: string;
   description: string;
   price: string;
@@ -9,17 +11,16 @@ interface CourseCardProps {
   featured?: boolean;
 }
 
-const CourseCard = ({ title, description, price, category, featured }: CourseCardProps) => {
-  return (
+const CourseCard = ({ slug, title, description, price, category, featured }: CourseCardProps) => {
+  const cardContent = (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.5 }}
       whileHover={{ scale: 1.02, y: -4 }}
-      className={`group relative flex flex-col rounded-lg border bg-card p-6 shadow-sm transition-shadow hover:shadow-md ${
-        featured ? "ring-2 ring-accent-gold" : "border-border"
-      }`}
+      className={`group relative flex flex-col rounded-lg border bg-card p-6 shadow-sm transition-shadow hover:shadow-md cursor-pointer ${featured ? "ring-2 ring-accent-gold" : "border-border"
+        }`}
     >
       {featured && (
         <div className="font-accent absolute -top-3 right-4 rounded-md bg-accent px-3 py-1 text-xs font-semibold text-accent-foreground">
@@ -45,6 +46,12 @@ const CourseCard = ({ title, description, price, category, featured }: CourseCar
       </div>
     </motion.div>
   );
+
+  if (slug) {
+    return <Link to={`/courses/${slug}`}>{cardContent}</Link>;
+  }
+
+  return cardContent;
 };
 
 export default CourseCard;
