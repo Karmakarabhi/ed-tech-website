@@ -1,5 +1,7 @@
+"use client";
+
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 
 interface CourseCardProps {
@@ -11,7 +13,14 @@ interface CourseCardProps {
   featured?: boolean;
 }
 
-const CourseCard = ({ slug, title, description, price, category, featured }: CourseCardProps) => {
+const CourseCard = ({
+  slug,
+  title,
+  description,
+  price,
+  category,
+  featured,
+}: CourseCardProps) => {
   const cardContent = (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -28,18 +37,25 @@ const CourseCard = ({ slug, title, description, price, category, featured }: Cou
         </div>
       )}
 
-      <Badge variant="secondary" className="font-accent w-fit text-xs font-medium">
+      <Badge
+        variant="secondary"
+        className="font-accent w-fit text-xs font-medium"
+      >
         {category}
       </Badge>
 
-      <h3 className="font-heading mt-4 text-xl text-card-foreground">{title}</h3>
+      <h3 className="font-heading mt-4 text-xl text-card-foreground">
+        {title}
+      </h3>
 
       <p className="font-body mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
         {description}
       </p>
 
       <div className="mt-6 flex items-center justify-between border-t border-border pt-4">
-        <span className="font-accent text-2xl font-bold text-primary">{price}</span>
+        <span className="font-accent text-2xl font-bold text-primary">
+          {price}
+        </span>
         <span className="font-body text-sm font-medium text-primary transition-colors group-hover:underline">
           View Course →
         </span>
@@ -48,7 +64,7 @@ const CourseCard = ({ slug, title, description, price, category, featured }: Cou
   );
 
   if (slug) {
-    return <Link to={`/courses/${slug}`}>{cardContent}</Link>;
+    return <Link href={`/courses/${slug}`}>{cardContent}</Link>;
   }
 
   return cardContent;
