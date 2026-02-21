@@ -31,9 +31,16 @@ const navLinks = [
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const router = useRouter();
+
+  // Prevent hydration mismatch — theme is unknown on server
+  useEffect(() => setMounted(true), []);
+
+  const ThemeIcon = mounted && theme === "dark" ? Sun : Moon;
+  const toggleTheme = () => setTheme(theme === "light" ? "dark" : "light");
 
   useEffect(() => {
     const supabase = createClient();
@@ -71,8 +78,7 @@ const Navbar = () => {
   }, []);
 
   const handleSignOut = async () => {
-    const supabase = createClient();
-    await supabase.auth.signOut();
+    await fetch("/api/auth/signout", { method: "POST" });
     setUser(null);
     setIsAdmin(false);
     router.push("/");
@@ -106,15 +112,11 @@ const Navbar = () => {
         {/* Right side */}
         <div className="hidden items-center gap-3 md:flex">
           <button
-            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+            onClick={toggleTheme}
             className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
             aria-label="Toggle theme"
           >
-            {theme === "light" ? (
-              <Moon className="h-4 w-4" />
-            ) : (
-              <Sun className="h-4 w-4" />
-            )}
+            <ThemeIcon className="h-4 w-4" />
           </button>
 
           {user ? (
@@ -157,15 +159,11 @@ const Navbar = () => {
         {/* Mobile */}
         <div className="flex items-center gap-2 md:hidden">
           <button
-            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+            onClick={toggleTheme}
             className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
             aria-label="Toggle theme"
           >
-            {theme === "light" ? (
-              <Moon className="h-4 w-4" />
-            ) : (
-              <Sun className="h-4 w-4" />
-            )}
+            <ThemeIcon className="h-4 w-4" />
           </button>
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>

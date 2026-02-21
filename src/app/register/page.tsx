@@ -57,7 +57,6 @@ export default function RegisterPage() {
             {/* Left — Branding */}
             <div className="hidden w-1/2 flex-col justify-between bg-secondary p-12 lg:flex">
                 <Link href="/" className="font-heading text-xl text-foreground">
-                    Gandhi University
                 </Link>
                 <div>
                     <h1 className="font-display text-5xl font-bold leading-tight text-foreground">
