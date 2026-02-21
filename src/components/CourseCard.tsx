@@ -53,7 +53,7 @@ const CourseCard = ({
       }`}
     >
       {featured && (
-        <div className="font-accent absolute -top-3 right-4 rounded-md bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground">
+        <div className="font-accent absolute top-0 right-0 rounded-bl-lg rounded-tr-lg bg-primary px-3 py-1.5 text-xs font-semibold text-primary-foreground">
           Popular
         </div>
       )}
@@ -70,7 +70,7 @@ const CourseCard = ({
         {title}
       </h3>
 
-      <p className="font-body mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
+      <p className="font-body mt-3 flex-1 text-[15px] leading-relaxed text-foreground/70">
         {description}
       </p>
 

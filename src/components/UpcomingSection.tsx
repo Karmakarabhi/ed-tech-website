@@ -98,7 +98,7 @@ const EventCard = ({ event }: { event: UpcomingEvent }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.5 }}
-      className="group flex flex-col rounded-lg border border-border bg-card p-7 sm:p-8 shadow-sm transition-shadow hover:shadow-md"
+      className="group flex flex-col rounded-lg border border-border bg-card p-7 sm:p-8 shadow-sm transition-shadow hover:shadow-md cursor-pointer"
     >
       <div className="mb-4 flex items-center gap-2">
         <span className="font-accent rounded-md bg-primary/10 px-2.5 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
@@ -176,7 +176,7 @@ const EventCard = ({ event }: { event: UpcomingEvent }) => {
 
 const UpcomingSection = () => {
   return (
-    <section id="upcoming" className="bg-secondary py-24 lg:py-32">
+    <section id="upcoming" className="py-24 lg:py-32">
       <div className="container mx-auto px-6 lg:px-8">
         <SectionHeading
           label="Coming Soon"
