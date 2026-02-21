@@ -21,7 +21,7 @@ interface HeaderBarProps {
 const getPageTitle = (pathname: string): string => {
   if (pathname === "/admin") return "Dashboard";
   if (pathname.startsWith("/admin/courses/new")) return "New Course";
-  if (pathname.startsWith("/admin/courses")) return "Courses";
+  if (pathname.startsWith("/admin/courses")) return "Programs";
   if (pathname.startsWith("/admin/testimonials")) return "Testimonials";
   if (pathname.startsWith("/admin/settings")) return "Settings";
   return "Admin";
@@ -33,7 +33,7 @@ const getBreadcrumbs = (pathname: string) => {
   
   if (segments.length > 1) {
     if (segments[1] === "courses") {
-      breadcrumbs.push({ label: "Courses", href: "/admin/courses" });
+      breadcrumbs.push({ label: "Programs", href: "/admin/courses" });
       if (segments[2] === "new") {
         breadcrumbs.push({ label: "New Course", href: "/admin/courses/new" });
       } else if (segments[2]) {

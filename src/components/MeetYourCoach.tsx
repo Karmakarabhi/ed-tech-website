@@ -14,8 +14,7 @@ const MeetYourCoach = () => {
   return (
     <section
       id="about"
-      className="py-24 lg:py-32"
-      style={{ background: "hsl(36 26% 90%)" }}
+      className="bg-secondary py-24 lg:py-32 dark:bg-secondary"
     >
       <div className="container mx-auto px-6 lg:px-8">
         {/* Section label */}
@@ -83,12 +82,12 @@ const MeetYourCoach = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.65, duration: 0.4 }}
-              className="absolute -bottom-5 -left-4 rounded-xl bg-foreground px-5 py-4 shadow-xl"
+              className="absolute -bottom-5 -left-4 rounded-xl bg-foreground px-5 py-4 shadow-xl dark:bg-card dark:border dark:border-border"
             >
-              <p className="font-accent text-[9px] uppercase tracking-[0.2em] text-white/50">
+              <p className="font-accent text-[9px] uppercase tracking-[0.2em] text-primary-foreground/50 dark:text-foreground/50">
                 Certified
               </p>
-              <p className="font-heading mt-0.5 text-base text-white">CBT Practitioner</p>
+              <p className="font-heading mt-0.5 text-base text-primary-foreground dark:text-foreground">CBT Practitioner</p>
             </motion.div>
           </motion.div>
 
@@ -150,11 +149,11 @@ const MeetYourCoach = () => {
             </p>
 
             {/* Mission block */}
-            <div className="mt-8 rounded-xl bg-foreground px-6 py-5">
-              <p className="font-accent text-[9px] uppercase tracking-[0.22em] text-white/40">
+            <div className="mt-8 rounded-xl bg-foreground px-6 py-5 dark:bg-card dark:border dark:border-border">
+              <p className="font-accent text-[9px] uppercase tracking-[0.22em] text-primary-foreground/40 dark:text-muted-foreground">
                 The Mission
               </p>
-              <p className="font-heading mt-2 text-xl leading-snug text-white">
+              <p className="font-heading mt-2 text-xl leading-snug text-primary-foreground dark:text-foreground">
                 Help{" "}
                 <span className="text-primary">1.4 Billion Indians</span>{" "}
                 understand and actualize their true potential.

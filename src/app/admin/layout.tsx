@@ -8,7 +8,7 @@ import HeaderBar from "@/components/admin/HeaderBar";
 
 const adminNav = [
     { label: "Dashboard", href: "/admin", icon: LayoutDashboard },
-    { label: "Courses", href: "/admin/courses", icon: BookOpen },
+    { label: "Programs", href: "/admin/courses", icon: BookOpen },
     { label: "Testimonials", href: "/admin/testimonials", icon: MessageSquare },
     { label: "Settings", href: "/admin/settings", icon: Settings },
 ];

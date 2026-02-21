@@ -7,6 +7,8 @@ import AnimatedTestimonials from "@/components/AnimatedTestimonials";
 import CTASection from "@/components/CTASection";
 import UpcomingSection from "@/components/UpcomingSection";
 import MeetYourCoach from "@/components/MeetYourCoach";
+import StrengthAssessment from "@/components/StrengthAssessment";
+import NotForYou from "@/components/NotForYou";
 import { createClient } from "@/lib/supabase/server";
 import type { Course, Testimonial } from "@/types/database";
 
@@ -47,31 +49,31 @@ const fallbackCourses = [
 
 const fallbackTestimonials = [
     {
-        quote: "This isn't motivation — it's education. I finally understood why I react the way I do, and how to change it. Within 3 weeks, my panic episodes dropped by half.",
+        quote: "I used to have crippling panic attacks every week that I couldn't explain. After completing the Anxiety Blueprint's CBT module in week 3, my panic episodes dropped by half — and I finally understood why they happened in the first place.",
         name: "Arjun Mehta",
         context: "Software Engineer, Bangalore",
         image: "/assets/student1.webp",
     },
     {
-        quote: "The Anxiety Blueprint gave me tools I'll use for life. No fluff, no toxic positivity — just real psychology. I've recommended it to five friends already.",
+        quote: "I used to dismiss therapy as 'not for men like me' and buried everything in work. After the first two weeks of the Anxiety Blueprint, I had real tools I'll use for life — no fluff, no toxic positivity. I've recommended it to five friends already.",
         name: "Rohit Sharma",
         context: "MBA Student, Delhi",
         image: "/assets/student2.webp",
     },
     {
-        quote: "Gandhi University feels like the serious education in self-mastery that I wish existed when I was 20. The depth here is unmatched.",
+        quote: "I used to consume hours of motivational content that changed nothing. After discovering Gandhi University's structured approach, I realised this is the serious education in self-mastery I wish existed when I was 20. The depth here is unmatched.",
         name: "Vikram Rao",
         context: "Doctor, Mumbai",
         image: "/assets/student3.webp",
     },
     {
-        quote: "After the Emotional Intelligence course, I had my first honest conversation with my father in 15 years. That alone was worth every rupee.",
+        quote: "I used to shut down in every difficult conversation with my family. After the Emotional Intelligence program's week-4 exercise on vulnerability, I had my first honest conversation with my father in 15 years. That alone was worth every rupee.",
         name: "Karan Patel",
         context: "Startup Founder, Ahmedabad",
         image: "/assets/student4.webp",
     },
     {
-        quote: "I went from 'discipline means willpower' to building systems that actually stick. Lost 12 kg and kept it off — because I finally understood the psychology behind habits.",
+        quote: "I used to believe discipline meant raw willpower — and I'd burn out every time. After the Discipline & Identity program, I built systems that actually stick. Lost 12 kg and kept it off because I finally understood the psychology behind habits.",
         name: "Siddharth Nair",
         context: "Content Creator, Chennai",
         image: "/assets/student5.webp",
@@ -135,13 +137,15 @@ export default async function HomePage() {
 
             <StatBlock />
 
-            {/* Featured Courses */}
+            <StrengthAssessment />
+
+            {/* Featured Programs */}
             <section id="courses" className="bg-secondary py-24 lg:py-32">
                 <div className="container mx-auto px-6 lg:px-8">
                     <SectionHeading
-                        label="Courses"
+                        label="Programs"
                         title="Evidence-based. Psychology-first."
-                        description="Each course is built on peer-reviewed research, clinical frameworks, and practical application — not motivational noise."
+                        description="Each program is built on peer-reviewed research, clinical frameworks, and practical application — not motivational noise."
                     />
                     <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                         {courses.map((course) => (
@@ -150,6 +154,8 @@ export default async function HomePage() {
                     </div>
                 </div>
             </section>
+
+            <NotForYou />
 
             {/* Testimonials */}
             <section id="testimonials" className="py-24 lg:py-32">

@@ -26,7 +26,7 @@ import { createClient } from "@/lib/supabase/client";
 import type { User } from "@supabase/supabase-js";
 
 const navLinks = [
-  { name: "Courses", link: "/courses" },
+  { name: "Programs", link: "/courses" },
   { name: "About", link: "/#about" },
   { name: "Testimonials", link: "/#testimonials" },
 ];

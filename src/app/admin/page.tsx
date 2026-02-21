@@ -56,7 +56,7 @@ export default async function AdminDashboard() {
 
     const stats = [
         {
-            label: "Total Courses",
+            label: "Total Programs",
             value: String(totalCourses ?? 0),
             icon: BookOpen,
             href: "/admin/courses",
@@ -120,11 +120,11 @@ export default async function AdminDashboard() {
                 })}
             </div>
 
-            {/* Recent Courses */}
+            {/* Recent Programs */}
             <div className="space-y-4">
                 <div className="flex items-center justify-between">
                     <h2 className="font-heading text-xl font-semibold text-foreground">
-                        Recent Courses
+                        Recent Programs
                     </h2>
                     <Button variant="outline" size="sm" asChild>
                         <Link href="/admin/courses">View All</Link>
@@ -135,7 +135,7 @@ export default async function AdminDashboard() {
                     <div className="divide-y divide-border">
                         {recentList.length === 0 && (
                             <p className="p-6 text-center text-sm text-muted-foreground">
-                                No courses yet.{" "}
+                                No programs yet.{" "}
                                 <Link
                                     href="/admin/courses/new"
                                     className="text-primary hover:underline"

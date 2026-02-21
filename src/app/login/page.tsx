@@ -73,7 +73,7 @@ function LoginForm() {
                         Master your life.
                     </h1>
                     <p className="font-body mt-6 max-w-md text-base leading-relaxed text-muted-foreground">
-                        Psychology-driven self-mastery courses built on evidence, not hype.
+                        Psychology-driven self-mastery programs built on evidence, not hype.
                     </p>
                 </div>
                 <p className="font-body text-sm text-muted-foreground">
