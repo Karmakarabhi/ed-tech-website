@@ -1,3 +1,4 @@
+export const preferredRegion = "bom1";
 import { createClient } from "@/lib/supabase/server";
 import { BookOpen, Users, TrendingUp, DollarSign } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";

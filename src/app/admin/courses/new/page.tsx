@@ -1,3 +1,4 @@
+export const preferredRegion = "bom1";
 import CourseForm from "@/components/admin/CourseForm";
 import { Metadata } from "next";
 

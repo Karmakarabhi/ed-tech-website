@@ -1,3 +1,4 @@
+export const preferredRegion = "bom1";
 import { createClient } from "@/lib/supabase/server";
 import { Metadata } from "next";
 import TestimonialsClient from "@/components/admin/TestimonialsClient";

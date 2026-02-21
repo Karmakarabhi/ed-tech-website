@@ -6,6 +6,7 @@ import type { Course } from "@/types/database";
 
 // Cache the page for 1 hour, revalidate in background
 export const revalidate = 3600;
+export const preferredRegion = "bom1";
 
 export const metadata: Metadata = {
     title: "Courses — Gandhi University",

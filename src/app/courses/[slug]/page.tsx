@@ -11,6 +11,7 @@ import type { ChapterWithLessons, Course } from "@/types/database";
 
 // Revalidate course pages every hour
 export const revalidate = 3600;
+export const preferredRegion = "bom1";
 
 interface PageProps {
     params: Promise<{ slug: string }>;
