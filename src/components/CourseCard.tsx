@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
 import { Brain, Heart, Target, BookOpen } from "lucide-react";
 
 // Map categories to icons for quick visual differentiation
@@ -58,13 +57,10 @@ const CourseCard = ({
         </div>
       )}
 
-      <Badge
-        variant="secondary"
-        className="font-accent flex w-fit items-center gap-1.5 text-xs font-medium"
-      >
+      <span className="font-accent inline-flex w-fit items-center gap-1.5 rounded-full border border-primary/20 bg-primary/8 px-3 py-1 text-xs font-semibold text-primary">
         {Icon}
         {category}
-      </Badge>
+      </span>
 
       <h3 className="font-heading mt-4 text-xl text-card-foreground">
         {title}

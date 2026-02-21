@@ -37,11 +37,11 @@ const useCountdown = (targetDate: string): TimeLeft => {
 };
 
 const TimerUnit = ({ value, label }: { value: number; label: string }) => (
-  <div className="flex flex-col items-center">
-    <span className="font-accent text-3xl font-bold text-primary sm:text-4xl">
+  <div className="flex flex-col items-center gap-1 px-2">
+    <span className="font-accent text-4xl font-bold tabular-nums text-primary overflow-hidden block">
       <SlidingNumber value={value} padStart />
     </span>
-    <span className="font-accent mt-1 text-xs uppercase tracking-wider text-muted-foreground">
+    <span className="font-accent text-[10px] uppercase tracking-widest text-muted-foreground">
       {label}
     </span>
   </div>
@@ -100,8 +100,8 @@ const EventCard = ({ event }: { event: UpcomingEvent }) => {
       transition={{ duration: 0.5 }}
       className="group flex flex-col rounded-lg border border-border bg-card p-7 sm:p-8 shadow-sm transition-shadow hover:shadow-md cursor-pointer"
     >
-      <div className="mb-4 flex items-center gap-2">
-        <span className="font-accent rounded-md bg-primary/10 px-2.5 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
+      <div className="mb-4 flex items-center gap-2 overflow-hidden">
+        <span className="font-accent rounded-full border border-primary/25 bg-primary/8 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.15em] text-primary">
           {event.type}
         </span>
       </div>
@@ -119,17 +119,17 @@ const EventCard = ({ event }: { event: UpcomingEvent }) => {
       </div>
 
       {/* Countdown */}
-      <div className="mt-6 rounded-xl bg-secondary p-5">
+      <div className="mt-6 rounded-xl bg-secondary px-4 py-5 overflow-hidden">
         <p className="font-body mb-4 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
           <Clock className="h-3.5 w-3.5" /> Starts in
         </p>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-center gap-1">
           <TimerUnit value={timeLeft.days} label="Days" />
-          <span className="font-accent text-xl text-muted-foreground/50">:</span>
+          <span className="font-accent pb-5 text-2xl text-muted-foreground/40 select-none">:</span>
           <TimerUnit value={timeLeft.hours} label="Hrs" />
-          <span className="font-accent text-xl text-muted-foreground/50">:</span>
+          <span className="font-accent pb-5 text-2xl text-muted-foreground/40 select-none">:</span>
           <TimerUnit value={timeLeft.minutes} label="Min" />
-          <span className="font-accent text-xl text-muted-foreground/50">:</span>
+          <span className="font-accent pb-5 text-2xl text-muted-foreground/40 select-none">:</span>
           <TimerUnit value={timeLeft.seconds} label="Sec" />
         </div>
       </div>

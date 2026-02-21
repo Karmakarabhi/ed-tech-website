@@ -20,8 +20,15 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <p className="mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-primary">
+            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-primary">
               Psychology-Driven Self-Mastery
+            </p>
+
+            {/* Founder personal statement */}
+            <p className="mb-6 font-body text-base leading-relaxed text-muted-foreground">
+              I&apos;m <span className="font-semibold text-foreground">Saurabh Gandhi</span>. I spent
+              a decade studying why Indian men struggle emotionally — and built Gandhi University
+              to give them the tools no one ever offered.
             </p>
 
             <h1 className="font-display text-5xl font-bold leading-[1.1] tracking-tight sm:text-6xl lg:text-7xl">
@@ -63,15 +70,37 @@ const Hero = () => {
             <div className="relative aspect-[3/4.5] overflow-hidden rounded-3xl shadow-2xl">
               <Image
                 src="/assets/author.webp"
-                alt="Founder portrait"
+                alt="Saurabh Gandhi — Founder, Gandhi University"
                 fill
                 priority
                 sizes="(max-width: 1024px) 100vw, 40vw"
-                className="object-cover object-[center_15%]"
+                className="object-cover object-[center_8%] scale-105"
               />
 
-              {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
+              {/* Bottom fade — grounds the subject */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+
+              {/* Radial vignette — softens edges so subject pops */}
+              <div
+                className="absolute inset-0 rounded-3xl pointer-events-none"
+                style={{
+                  background:
+                    "radial-gradient(ellipse 80% 85% at 50% 35%, transparent 48%, rgba(0,0,0,0.42) 100%)",
+                }}
+              />
+
+              {/* Top edge blur mask */}
+              <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-black/20 to-transparent" />
+
+              {/* Side edge blur bars */}
+              <div className="absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-black/20 to-transparent" />
+              <div className="absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-black/20 to-transparent" />
+
+              {/* Founder name tag — bottom of image */}
+              <div className="absolute bottom-5 left-5 right-5">
+                <p className="font-accent text-xs uppercase tracking-[0.18em] text-white/60 mb-0.5">Founder</p>
+                <p className="font-heading text-xl text-white drop-shadow-md">Saurabh Gandhi</p>
+              </div>
             </div>
 
             {/* Floating stat card */}

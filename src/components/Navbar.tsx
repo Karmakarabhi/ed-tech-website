@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Sun, Moon, LayoutDashboard, LogOut } from "lucide-react";
+import { Sun, Moon, LayoutDashboard, LogOut, User as UserIcon } from "lucide-react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
@@ -100,11 +100,14 @@ const SiteNavbar = () => {
   const AuthDesktop = user ? (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" className="font-body max-w-[120px] truncate text-sm">
-          {user.email?.split("@")[0]}
+        <Button variant="ghost" size="sm" className="h-8 w-8 rounded-full p-0">
+          <UserIcon className="h-4 w-4" />
+          <span className="sr-only">User menu</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-48">
+        <div className="px-2 py-1.5 text-sm font-medium">{user.email}</div>
+        <DropdownMenuSeparator />
         {isAdmin && (
           <DropdownMenuItem asChild>
             <Link href="/admin" className="flex items-center gap-2">
@@ -185,6 +188,9 @@ const SiteNavbar = () => {
 
           {user ? (
             <>
+              <div className="font-body text-sm text-muted-foreground px-2">
+                Signed in as: {user.email}
+              </div>
               {isAdmin && (
                 <Link
                   href="/admin"

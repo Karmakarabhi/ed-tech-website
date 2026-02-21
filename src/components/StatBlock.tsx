@@ -1,13 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Youtube, Users, BookOpen, Award } from "lucide-react";
+import { Youtube, Users, BookOpen, Clock } from "lucide-react";
 
 const stats = [
   { value: "1.4M+", label: "YouTube Subscribers", icon: Youtube },
   { value: "700K+", label: "Instagram Followers", icon: Users },
   { value: "50K+", label: "Students Enrolled", icon: BookOpen },
-  { value: "CBT", label: "Certified Practitioner", icon: Award },
+  { value: "10K+", label: "Hours of Content", icon: Clock },
 ];
 
 const StatBlock = () => {
