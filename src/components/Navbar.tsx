@@ -100,7 +100,7 @@ const SiteNavbar = () => {
   const AuthDesktop = user ? (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" className="font-body text-sm">
+        <Button variant="ghost" size="sm" className="font-body max-w-[120px] truncate text-sm">
           {user.email?.split("@")[0]}
         </Button>
       </DropdownMenuTrigger>

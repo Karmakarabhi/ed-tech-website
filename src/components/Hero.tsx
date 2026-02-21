@@ -60,14 +60,14 @@ const Hero = () => {
             className="relative mx-auto w-full max-w-md"
           >
             {/* Portrait frame */}
-            <div className="relative aspect-[3/4] overflow-hidden rounded-3xl shadow-2xl">
+            <div className="relative aspect-[3/4.5] overflow-hidden rounded-3xl shadow-2xl">
               <Image
                 src="/assets/author.webp"
                 alt="Founder portrait"
                 fill
                 priority
                 sizes="(max-width: 1024px) 100vw, 40vw"
-                className="object-cover object-[center_20%] scale-[1.02]"
+                className="object-cover object-[center_15%]"
               />
 
               {/* Gradient overlay */}
@@ -81,7 +81,7 @@ const Hero = () => {
               transition={{ delay: 0.8 }}
               className="absolute -bottom-8 -left-8 rounded-xl bg-card/95 p-6 shadow-xl backdrop-blur"
             >
-              <p className="text-3xl font-bold text-primary">1M+</p>
+              <p className="text-3xl font-bold text-primary">1.4M+</p>
               <p className="text-xs text-muted-foreground">YouTube Subscribers</p>
             </motion.div>
           </motion.div>

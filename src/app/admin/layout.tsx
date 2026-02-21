@@ -36,9 +36,9 @@ export default async function AdminLayout({
     const profile = data as Pick<Profile, "role" | "first_name" | "last_name"> | null;
     if (!profile || profile.role !== "admin") redirect("/");
 
-    const displayName =
+    const displayName: string =
         [profile.first_name, profile.last_name].filter(Boolean).join(" ") ||
-        user.email;
+        user.email || "Admin";
 
     return (
         <div className="flex min-h-screen bg-background">
