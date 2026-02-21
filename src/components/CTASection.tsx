@@ -21,7 +21,7 @@ const CTASection = () => {
           </h2>
           <p className="font-body mx-auto mt-6 max-w-xl text-base text-primary-foreground/80">
             Join thousands of men who chose understanding over suppression. Start your first
-            course today.
+            program today.
           </p>
           <Button
             size="lg"

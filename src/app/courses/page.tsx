@@ -9,9 +9,9 @@ export const revalidate = 3600;
 export const preferredRegion = "bom1";
 
 export const metadata: Metadata = {
-    title: "Courses — Gandhi University",
+    title: "Programs — Gandhi University",
     description:
-        "Browse evidence-based psychology and self-mastery courses for Indian men. CBT, emotional intelligence, discipline, shadow work, Stoicism, and relationships.",
+        "Browse evidence-based psychology and self-mastery programs for Indian men. CBT, emotional intelligence, discipline, shadow work, Stoicism, and relationships.",
 };
 
 // Format paise to rupee string
@@ -39,20 +39,20 @@ export default async function CoursesPage() {
             <section className="py-16 lg:py-24">
                 <div className="container mx-auto px-6 lg:px-8">
                     <SectionHeading
-                        label="All Courses"
+                        label="All Programs"
                         title="Evidence-based. Psychology-first."
-                        description="Each course is built on peer-reviewed research, clinical frameworks, and practical application — not motivational noise."
+                        description="Each program is built on peer-reviewed research, clinical frameworks, and practical application — not motivational noise."
                     />
 
                     {error && (
                         <p className="mt-8 text-center text-sm text-muted-foreground">
-                            Could not load courses. Please try again later.
+                            Could not load programs. Please try again later.
                         </p>
                     )}
 
                     {!error && courseList.length === 0 && (
                         <p className="mt-8 text-center text-sm text-muted-foreground">
-                            No courses available yet. Check back soon.
+                            No programs available yet. Check back soon.
                         </p>
                     )}
 

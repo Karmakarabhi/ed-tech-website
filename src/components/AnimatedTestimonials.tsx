@@ -12,14 +12,13 @@ export interface Testimonial {
   image?: string;
 }
 
-// Deterministic placeholder avatars (Unsplash portrait collection)
+// High-quality Unsplash portrait images — one per testimonial (Indian male portraits)
 const PLACEHOLDER_IMAGES = [
-  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
-  "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop&crop=face",
-  "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face",
-  "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
-  "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face",
-  "https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=400&h=400&fit=crop&crop=face",
+  "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600&h=760&fit=crop&crop=faces,top&q=85",
+  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=760&fit=crop&crop=faces,top&q=85",
+  "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&h=760&fit=crop&crop=faces,top&q=85",
+  "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&h=760&fit=crop&crop=faces,top&q=85",
+  "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&h=760&fit=crop&crop=faces,top&q=85",
 ];
 
 interface Props {
@@ -59,37 +58,46 @@ export default function AnimatedTestimonials({
   return (
     <div className="mx-auto grid max-w-5xl grid-cols-1 gap-12 px-4 py-4 md:grid-cols-2 md:gap-20">
       {/* Stacked image cards */}
-      <div className="relative h-72 w-full sm:h-80 md:h-96">
+      <div className="relative h-80 w-full sm:h-96 md:h-[28rem]">
         <AnimatePresence>
           {testimonials.map((t, i) => {
             const offset = i - active;
             const absOffset = Math.abs(offset);
-            if (absOffset > 2) return null;
+            if (absOffset > 4) return null;
 
             const img = t.image ?? PLACEHOLDER_IMAGES[i % PLACEHOLDER_IMAGES.length];
 
             return (
               <motion.div
                 key={i}
-                className="absolute inset-0 overflow-hidden rounded-2xl"
+                className="absolute inset-0 overflow-hidden rounded-2xl shadow-lg"
                 initial={{
                   opacity: 0,
-                  scale: 0.9,
-                  rotate: offset * 6,
-                  x: direction * 80,
+                  scale: 0.88,
+                  rotate: offset * 5,
+                  x: direction * 90,
                 }}
                 animate={{
-                  opacity: offset === 0 ? 1 : 0.35 - absOffset * 0.1,
-                  scale: 1 - absOffset * 0.06,
-                  rotate: offset * 5,
+                  opacity:
+                    offset === 0
+                      ? 1
+                      : absOffset === 1
+                      ? 0.55
+                      : absOffset === 2
+                      ? 0.3
+                      : absOffset === 3
+                      ? 0.15
+                      : 0.07,
+                  scale: 1 - absOffset * 0.055,
+                  rotate: offset * 4,
                   zIndex: testimonials.length - absOffset,
-                  x: offset * 18,
-                  y: absOffset * 8,
+                  x: offset * 16,
+                  y: absOffset * 7,
                 }}
                 exit={{
                   opacity: 0,
-                  scale: 0.85,
-                  x: -direction * 80,
+                  scale: 0.84,
+                  x: -direction * 90,
                 }}
                 transition={{ duration: 0.45, ease: "easeInOut" }}
               >
@@ -97,7 +105,7 @@ export default function AnimatedTestimonials({
                   src={img}
                   alt={t.name}
                   fill
-                  className="object-cover object-center"
+                  className="object-cover object-top"
                   sizes="(max-width: 768px) 100vw, 50vw"
                   priority={i === active}
                 />

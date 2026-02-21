@@ -93,7 +93,7 @@ export default function RegisterPage() {
                         Create your account
                     </h2>
                     <p className="font-body mt-2 text-sm text-muted-foreground">
-                        Start learning with evidence-based courses.
+                        Start learning with evidence-based programs.
                     </p>
 
                     <form className="mt-8 space-y-5" onSubmit={handleRegister}>

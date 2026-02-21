@@ -180,7 +180,7 @@ const UpcomingSection = () => {
       <div className="container mx-auto px-6 lg:px-8">
         <SectionHeading
           label="Coming Soon"
-          title="Upcoming Courses & Workshops"
+          title="Upcoming Programs & Workshops"
           description="Reserve your spot in our next evidence-based programs. Limited seats available."
         />
         <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">

@@ -6,11 +6,11 @@ import Footer from "@/components/Footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
-    title: "Gandhi University — Psychology-Driven Self-Mastery Courses",
+    title: "Gandhi University — Psychology-Driven Self-Mastery Programs",
     description:
-        "Evidence-based psychology courses for Indian men. Master your mind through CBT, emotional intelligence, discipline, and depth psychology. Built on research, not hype.",
+        "Evidence-based psychology programs for Indian men. Master your mind through CBT, emotional intelligence, discipline, and depth psychology. Built on research, not hype.",
     keywords: [
-        "psychology courses",
+        "psychology programs",
         "self-mastery",
         "CBT",
         "emotional intelligence",

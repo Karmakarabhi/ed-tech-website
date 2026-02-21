@@ -27,7 +27,7 @@ const ProblemStatement = () => {
             </p>
             <p>
               Gandhi University exists because real strength isn't about suppression — it's about
-              understanding. Our courses are grounded in cognitive behavioral therapy, emotional
+              understanding. Our programs are grounded in cognitive behavioral therapy, emotional
               intelligence research, and practical philosophy — not motivational noise.
             </p>
             <p className="font-medium text-foreground">

@@ -38,24 +38,27 @@ const Hero = () => {
             </h1>
 
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
-              Evidence-based courses in cognitive psychology, emotional regulation,
+              Evidence-based programs in cognitive psychology, emotional regulation,
               and discipline — designed for the modern Indian man seeking depth over noise.
             </p>
 
-            <div className="mt-10 flex flex-wrap items-center gap-4">
-              <Button size="lg" className="gap-2 text-base" asChild>
-                <Link href="/courses">
-                  Explore Courses
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
+            <div className="mt-10 flex flex-col items-start gap-3">
+              <div className="flex flex-wrap items-center gap-4">
+                <Button size="lg" className="gap-2 text-base" asChild>
+                  <Link href="/courses">
+                    Explore Programs
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
 
-              <a
-                href="#about"
-                className="text-sm font-medium text-muted-foreground hover:text-foreground"
+              <Link
+                href="#method"
+                className="group inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
               >
-                Learn more about our approach
-              </a>
+                See How The Method Works
+                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+              </Link>
             </div>
           </motion.div>
 
@@ -69,7 +72,7 @@ const Hero = () => {
             {/* Portrait frame */}
             <div className="relative aspect-[3/4.5] overflow-hidden rounded-3xl shadow-2xl">
               <Image
-                src="/assets/author.webp"
+                src="/assets/authorTwo.webp"
                 alt="Saurabh Gandhi — Founder, Gandhi University"
                 fill
                 priority

@@ -166,7 +166,7 @@ export default function SettingsClient({ settings }: SettingsClientProps) {
                                 <Input
                                     value={heroPrimary}
                                     onChange={(e) => setHeroPrimary(e.target.value)}
-                                    placeholder="Explore Courses"
+                                    placeholder="Explore Programs"
                                 />
                             </div>
                             <div className="space-y-2">

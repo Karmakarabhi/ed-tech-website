@@ -35,7 +35,7 @@ export default async function AdminCoursesPage() {
             <div className="flex items-center justify-between">
                 <div>
                     <h1 className="font-heading text-3xl font-bold text-foreground">
-                        Courses
+                        Programs
                     </h1>
                     <p className="font-body mt-1 text-sm text-muted-foreground">
                         {courseList.length} total · {statusCounts.published} published ·{" "}
@@ -54,7 +54,7 @@ export default async function AdminCoursesPage() {
                 <div className="divide-y divide-border">
                     {courseList.length === 0 && (
                         <p className="p-8 text-center text-sm text-muted-foreground">
-                            No courses yet. Create your first one!
+                            No programs yet. Create your first one!
                         </p>
                     )}
                     {courseList.map((course) => (

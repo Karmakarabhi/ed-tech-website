@@ -23,7 +23,7 @@ const platforms = [
     iconColor: "text-primary",
     metric: "50K+",
     label: "Students Enrolled",
-    sub: "Across all courses",
+    sub: "Across all programs",
   },
 ];
 
