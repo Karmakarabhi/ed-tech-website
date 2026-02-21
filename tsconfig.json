@@ -38,6 +38,7 @@
   "exclude": [
     "node_modules",
     "src-backup",
-    "src/_legacy-pages"
+    "src/_legacy-pages",
+    "vitest.config.ts"
   ]
 }
