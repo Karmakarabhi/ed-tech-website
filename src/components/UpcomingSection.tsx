@@ -1,10 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { Calendar, Clock } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Calendar, Clock, CheckCheck, Bell } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionHeading from "./SectionHeading";
+import { SlidingNumber } from "@/components/core/sliding-number";
 
 interface TimeLeft {
   days: number;
@@ -38,7 +39,7 @@ const useCountdown = (targetDate: string): TimeLeft => {
 const TimerUnit = ({ value, label }: { value: number; label: string }) => (
   <div className="flex flex-col items-center">
     <span className="font-accent text-3xl font-bold text-primary sm:text-4xl">
-      {String(value).padStart(2, "0")}
+      <SlidingNumber value={value} padStart />
     </span>
     <span className="font-accent mt-1 text-xs uppercase tracking-wider text-muted-foreground">
       {label}
@@ -79,11 +80,17 @@ const upcomingEvents: UpcomingEvent[] = [
 
 const EventCard = ({ event }: { event: UpcomingEvent }) => {
   const timeLeft = useCountdown(event.date);
+  const [notified, setNotified] = useState(false);
   const formattedDate = new Date(event.date).toLocaleDateString("en-IN", {
     day: "numeric",
     month: "long",
     year: "numeric",
   });
+
+  function handleNotify() {
+    if (notified) return;
+    setNotified(true);
+  }
 
   return (
     <motion.div
@@ -127,9 +134,42 @@ const EventCard = ({ event }: { event: UpcomingEvent }) => {
         </div>
       </div>
 
-      <Button variant="outline" className="font-body mt-5 w-full text-sm">
-        Notify Me
-      </Button>
+      <motion.div whileTap={{ scale: 0.97 }} className="mt-5">
+        <Button
+          variant={notified ? "default" : "outline"}
+          className="font-body relative w-full overflow-hidden text-sm transition-colors duration-300"
+          onClick={handleNotify}
+          disabled={notified}
+        >
+          <AnimatePresence mode="wait" initial={false}>
+            {notified ? (
+              <motion.span
+                key="notified"
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.2 }}
+                className="flex items-center gap-1.5"
+              >
+                <CheckCheck className="h-4 w-4" />
+                You&apos;re on the list!
+              </motion.span>
+            ) : (
+              <motion.span
+                key="idle"
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.2 }}
+                className="flex items-center gap-1.5"
+              >
+                <Bell className="h-4 w-4" />
+                Notify Me
+              </motion.span>
+            )}
+          </AnimatePresence>
+        </Button>
+      </motion.div>
     </motion.div>
   );
 };

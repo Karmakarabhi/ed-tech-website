@@ -3,7 +3,7 @@ import ProblemStatement from "@/components/ProblemStatement";
 import StatBlock from "@/components/StatBlock";
 import SectionHeading from "@/components/SectionHeading";
 import CourseCard from "@/components/CourseCard";
-import TestimonialCard from "@/components/TestimonialCard";
+import AnimatedTestimonials from "@/components/AnimatedTestimonials";
 import CTASection from "@/components/CTASection";
 import UpcomingSection from "@/components/UpcomingSection";
 import { createClient } from "@/lib/supabase/server";
@@ -11,7 +11,6 @@ import type { Course, Testimonial } from "@/types/database";
 
 // Revalidate ISR cache every hour
 export const revalidate = 3600;
-export const preferredRegion = "bom1";
 
 function formatPrice(paise: number): string {
     return `₹${(paise / 100).toLocaleString("en-IN")}`;
@@ -141,10 +140,8 @@ export default async function HomePage() {
                         title="What our students say"
                         description="Real feedback from men who chose depth over quick fixes."
                     />
-                    <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                        {testimonials.map((t) => (
-                            <TestimonialCard key={t.name} {...t} />
-                        ))}
+                    <div className="mt-12">
+                        <AnimatedTestimonials testimonials={testimonials} />
                     </div>
                 </div>
             </section>

@@ -6,7 +6,7 @@ import { ArrowRight } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden pt-16">
+    <section className="relative flex min-h-screen items-center overflow-hidden pt-24">
       {/* Subtle warm gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/40" />
 

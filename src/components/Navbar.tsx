@@ -1,17 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, Sun, Moon, LayoutDashboard, LogOut } from "lucide-react";
+import { Sun, Moon, LayoutDashboard, LogOut } from "lucide-react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-  SheetTitle,
-} from "@/components/ui/sheet";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,18 +13,27 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Navbar,
+  NavBody,
+  NavItems,
+  MobileNav,
+  MobileNavHeader,
+  MobileNavMenu,
+  MobileNavToggle,
+} from "@/components/ui/resizable-navbar";
 import { createClient } from "@/lib/supabase/client";
 import type { User } from "@supabase/supabase-js";
 
 const navLinks = [
-  { label: "Courses", href: "/courses" },
-  { label: "About", href: "/#about" },
-  { label: "Testimonials", href: "/#testimonials" },
+  { name: "Courses", link: "/courses" },
+  { name: "About", link: "/#about" },
+  { name: "Testimonials", link: "/#testimonials" },
 ];
 
-const Navbar = () => {
+const SiteNavbar = () => {
   const { theme, setTheme } = useTheme();
-  const [open, setOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -45,8 +48,6 @@ const Navbar = () => {
   useEffect(() => {
     const supabase = createClient();
 
-    // getSession() reads from cookie — no network round-trip
-    // then fetch profile role in one query only when needed
     supabase.auth.getSession().then(async ({ data: { session } }) => {
       setUser(session?.user ?? null);
       if (session?.user) {
@@ -59,20 +60,21 @@ const Navbar = () => {
       }
     });
 
-    // Listen for auth state changes (sign in / sign out)
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
-      setUser(session?.user ?? null);
-      if (session?.user && (event === "SIGNED_IN" || event === "TOKEN_REFRESHED")) {
-        const { data } = await supabase
-          .from("profiles")
-          .select("role")
-          .eq("id", session.user.id)
-          .single();
-        setIsAdmin((data as { role?: string } | null)?.role === "admin");
-      } else if (event === "SIGNED_OUT") {
-        setIsAdmin(false);
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        setUser(session?.user ?? null);
+        if (session?.user && (event === "SIGNED_IN" || event === "TOKEN_REFRESHED")) {
+          const { data } = await supabase
+            .from("profiles")
+            .select("role")
+            .eq("id", session.user.id)
+            .single();
+          setIsAdmin((data as { role?: string } | null)?.role === "admin");
+        } else if (event === "SIGNED_OUT") {
+          setIsAdmin(false);
+        }
       }
-    });
+    );
 
     return () => subscription.unsubscribe();
   }, []);
@@ -85,143 +87,141 @@ const Navbar = () => {
     router.refresh();
   };
 
+  const ThemeButton = (
+    <button
+      onClick={toggleTheme}
+      className="rounded-full p-2 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+      aria-label="Toggle theme"
+    >
+      <ThemeIcon className="h-4 w-4" />
+    </button>
+  );
+
+  const AuthDesktop = user ? (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" size="sm" className="font-body text-sm">
+          {user.email?.split("@")[0]}
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="w-48">
+        {isAdmin && (
+          <DropdownMenuItem asChild>
+            <Link href="/admin" className="flex items-center gap-2">
+              <LayoutDashboard className="h-4 w-4" />
+              Admin Dashboard
+            </Link>
+          </DropdownMenuItem>
+        )}
+        <DropdownMenuSeparator />
+        <DropdownMenuItem
+          onClick={handleSignOut}
+          className="flex items-center gap-2 text-destructive focus:text-destructive"
+        >
+          <LogOut className="h-4 w-4" />
+          Sign Out
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  ) : (
+    <Button variant="ghost" size="sm" className="font-body text-sm" asChild>
+      <Link href="/login">Login</Link>
+    </Button>
+  );
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-md">
-      <nav className="container mx-auto flex h-16 items-center justify-between px-6 lg:px-8">
-        {/* Logo */}
+    <Navbar>
+      {/* ── Desktop pill ── */}
+      <NavBody>
         <Link
           href="/"
-          className="font-heading text-xl tracking-tight text-foreground"
+          className="font-heading relative z-20 text-lg tracking-tight text-foreground"
         >
           Gandhi University
         </Link>
 
-        {/* Desktop nav */}
-        <div className="hidden items-center gap-8 md:flex">
-          {navLinks.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              className="font-body text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </div>
+        <NavItems items={navLinks} onItemClick={() => setMobileOpen(false)} />
 
-        {/* Right side */}
-        <div className="hidden items-center gap-3 md:flex">
-          <button
-            onClick={toggleTheme}
-            className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
-            aria-label="Toggle theme"
-          >
-            <ThemeIcon className="h-4 w-4" />
-          </button>
-
-          {user ? (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="sm" className="font-body text-sm">
-                  {user.email?.split("@")[0]}
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-48">
-                {isAdmin && (
-                  <DropdownMenuItem asChild>
-                    <Link href="/admin" className="flex items-center gap-2">
-                      <LayoutDashboard className="h-4 w-4" />
-                      Admin Dashboard
-                    </Link>
-                  </DropdownMenuItem>
-                )}
-                <DropdownMenuSeparator />
-                <DropdownMenuItem
-                  onClick={handleSignOut}
-                  className="flex items-center gap-2 text-destructive focus:text-destructive"
-                >
-                  <LogOut className="h-4 w-4" />
-                  Sign Out
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          ) : (
-            <Button variant="ghost" size="sm" className="font-body text-sm" asChild>
-              <Link href="/login">Login</Link>
-            </Button>
-          )}
-
-          <Button size="sm" className="font-body text-sm" asChild>
+        <div className="relative z-20 flex items-center gap-2">
+          {ThemeButton}
+          {AuthDesktop}
+          <Button size="sm" className="font-body rounded-full text-sm" asChild>
             <Link href="/courses">Start Learning</Link>
           </Button>
         </div>
+      </NavBody>
 
-        {/* Mobile */}
-        <div className="flex items-center gap-2 md:hidden">
-          <button
-            onClick={toggleTheme}
-            className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
-            aria-label="Toggle theme"
+      {/* ── Mobile ── */}
+      <MobileNav>
+        <MobileNavHeader>
+          <Link
+            href="/"
+            className="font-heading text-lg tracking-tight text-foreground"
           >
-            <ThemeIcon className="h-4 w-4" />
-          </button>
-          <Sheet open={open} onOpenChange={setOpen}>
-            <SheetTrigger asChild>
+            Gandhi University
+          </Link>
+          <div className="flex items-center gap-2">
+            {ThemeButton}
+            <MobileNavToggle
+              isOpen={mobileOpen}
+              onClick={() => setMobileOpen((v) => !v)}
+            />
+          </div>
+        </MobileNavHeader>
+
+        <MobileNavMenu isOpen={mobileOpen} onClose={() => setMobileOpen(false)}>
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              href={link.link}
+              onClick={() => setMobileOpen(false)}
+              className="font-body w-full text-base font-medium text-foreground"
+            >
+              {link.name}
+            </Link>
+          ))}
+
+          <hr className="w-full border-border" />
+
+          {user ? (
+            <>
+              {isAdmin && (
+                <Link
+                  href="/admin"
+                  onClick={() => setMobileOpen(false)}
+                  className="font-body flex items-center gap-2 text-base font-medium text-foreground"
+                >
+                  <LayoutDashboard className="h-4 w-4" />
+                  Admin Dashboard
+                </Link>
+              )}
               <button
-                className="rounded-lg p-2 text-foreground"
-                aria-label="Open menu"
+                onClick={() => { setMobileOpen(false); handleSignOut(); }}
+                className="font-body flex items-center gap-2 text-base font-medium text-destructive"
               >
-                <Menu className="h-5 w-5" />
+                <LogOut className="h-4 w-4" />
+                Sign Out
               </button>
-            </SheetTrigger>
-            <SheetContent side="right" className="bg-background">
-              <SheetTitle className="font-heading text-lg">Menu</SheetTitle>
-              <div className="mt-8 flex flex-col gap-6">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.label}
-                    href={link.href}
-                    onClick={() => setOpen(false)}
-                    className="font-body text-lg font-medium text-foreground"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-                <hr className="border-border" />
-                {user ? (
-                  <>
-                    {isAdmin && (
-                      <Button variant="ghost" className="justify-start font-body" asChild>
-                        <Link href="/admin" onClick={() => setOpen(false)}>
-                          <LayoutDashboard className="mr-2 h-4 w-4" />
-                          Admin Dashboard
-                        </Link>
-                      </Button>
-                    )}
-                    <Button
-                      variant="ghost"
-                      className="justify-start font-body text-destructive hover:text-destructive"
-                      onClick={() => { setOpen(false); handleSignOut(); }}
-                    >
-                      <LogOut className="mr-2 h-4 w-4" />
-                      Sign Out
-                    </Button>
-                  </>
-                ) : (
-                  <Button variant="ghost" className="justify-start font-body" asChild>
-                    <Link href="/login">Login</Link>
-                  </Button>
-                )}
-                <Button className="font-body" asChild>
-                  <Link href="/courses">Start Learning</Link>
-                </Button>
-              </div>
-            </SheetContent>
-          </Sheet>
-        </div>
-      </nav>
-    </header>
+            </>
+          ) : (
+            <Link
+              href="/login"
+              onClick={() => setMobileOpen(false)}
+              className="font-body text-base font-medium text-foreground"
+            >
+              Login
+            </Link>
+          )}
+
+          <Button className="font-body w-full rounded-full" asChild>
+            <Link href="/courses" onClick={() => setMobileOpen(false)}>
+              Start Learning
+            </Link>
+          </Button>
+        </MobileNavMenu>
+      </MobileNav>
+    </Navbar>
   );
 };
 
-export default Navbar;
+export default SiteNavbar;
