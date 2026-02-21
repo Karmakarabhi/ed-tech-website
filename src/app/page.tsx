@@ -7,7 +7,6 @@ import AnimatedTestimonials from "@/components/AnimatedTestimonials";
 import CTASection from "@/components/CTASection";
 import UpcomingSection from "@/components/UpcomingSection";
 import MeetYourCoach from "@/components/MeetYourCoach";
-import SocialProofBar from "@/components/SocialProofBar";
 import { createClient } from "@/lib/supabase/server";
 import type { Course, Testimonial } from "@/types/database";
 
@@ -135,8 +134,6 @@ export default async function HomePage() {
             <MeetYourCoach />
 
             <StatBlock />
-
-            <SocialProofBar />
 
             {/* Featured Courses */}
             <section id="courses" className="bg-secondary py-24 lg:py-32">

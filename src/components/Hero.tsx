@@ -69,7 +69,7 @@ const Hero = () => {
             {/* Portrait frame */}
             <div className="relative aspect-[3/4.5] overflow-hidden rounded-3xl shadow-2xl">
               <Image
-                src="/assets/author.webp"
+                src="/assets/authorTwo.webp"
                 alt="Saurabh Gandhi — Founder, Gandhi University"
                 fill
                 priority

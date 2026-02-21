@@ -10,13 +10,6 @@ const credentials = [
   { label: "TEDx Speaker" },
 ];
 
-const stats = [
-  { value: "1.4M+", label: "YouTube" },
-  { value: "700K+", label: "Instagram" },
-  { value: "50K+", label: "Students" },
-  { label: "CBT", value: "Certified" },
-];
-
 const MeetYourCoach = () => {
   return (
     <section
@@ -48,7 +41,7 @@ const MeetYourCoach = () => {
             {/* Portrait */}
             <div className="relative aspect-[3/4] overflow-hidden rounded-2xl shadow-2xl">
               <Image
-                src="/assets/authorTwo.webp"
+                src="/assets/authorOne.webp"
                 alt="Saurabh Gandhi — Psychology Expert & Founder"
                 fill
                 sizes="(max-width: 1024px) 80vw, 40vw"
@@ -168,22 +161,6 @@ const MeetYourCoach = () => {
               </p>
             </div>
 
-            {/* Stats row */}
-            <div className="mt-8 grid grid-cols-4 divide-x divide-border border-y border-border py-5">
-              {[
-                { value: "1.4M+", label: "YouTube" },
-                { value: "700K+", label: "Instagram" },
-                { value: "50K+", label: "Students" },
-                { value: "CBT", label: "Certified" },
-              ].map((s) => (
-                <div key={s.label} className="flex flex-col items-center gap-0.5 px-3 text-center">
-                  <span className="font-accent text-xl font-bold text-primary">{s.value}</span>
-                  <span className="font-body text-[10px] uppercase tracking-wider text-muted-foreground">
-                    {s.label}
-                  </span>
-                </div>
-              ))}
-            </div>
           </motion.div>
         </div>
       </div>

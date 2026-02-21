@@ -10,7 +10,7 @@ const footerLinks: Record<string, { label: string; href: string }[]> = {
     { label: "Workshops", href: "#" },
   ],
   COMPANY: [
-    { label: "About", href: "#" },
+    { label: "About", href: "#about" },
     { label: "Blog", href: "#" },
     { label: "Careers", href: "#" },
     { label: "Press", href: "#" },
@@ -26,25 +26,34 @@ const footerLinks: Record<string, { label: string; href: string }[]> = {
 };
 
 const socialLinks = [
-  { name: "Instagram", icon: Instagram, url: "https://instagram.com/gandhiuniversity", accent: false },
-  { name: "X (Twitter)", icon: Twitter, url: "https://x.com/gandhiuni", accent: false },
-  { name: "Facebook", icon: Facebook, url: "https://facebook.com/gandhiuniversity", accent: false },
-  { name: "YouTube", icon: Youtube, url: "https://youtube.com/@gandhiuniversity", accent: true },
+  { name: "Instagram",   icon: Instagram, url: "https://instagram.com/gandhiuniversity",  accent: false },
+  { name: "X (Twitter)", icon: Twitter,   url: "https://x.com/gandhiuni",                 accent: false },
+  { name: "Facebook",    icon: Facebook,  url: "https://facebook.com/gandhiuniversity",   accent: false },
+  { name: "YouTube",     icon: Youtube,   url: "https://youtube.com/@gandhiuniversity",   accent: true  },
 ];
 
 const statPills = [
-  { value: "1.4M+", label: "YouTube" },
+  { value: "1.4M+", label: "YouTube"   },
   { value: "700K+", label: "Instagram" },
-  { value: "50K+", label: "Students" },
+  { value: "50K+",  label: "Students"  },
 ];
 
 const Footer = () => {
   return (
-    <footer className="relative overflow-hidden bg-[#111110] text-white">
-      {/* Ghost watermark */}
+    /*
+     * Light:  warm near-black  bg-[#1c1814]  (echoes the site's brown foreground)
+     * Dark:   deeper charcoal  dark:bg-[#0d0c0b]
+     * All interior colours use white + opacity so they render correctly on
+     * both variants without needing separate dark: overrides everywhere.
+     */
+    <footer className="relative overflow-hidden bg-[#1c1814] text-white dark:bg-[#0d0c0b]">
+
+      {/* Ghost watermark — visible in both themes via low opacity white */}
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute -bottom-6 right-0 select-none font-serif text-[min(14vw,160px)] font-black italic leading-none tracking-tight text-white/[0.04]"
+        className="pointer-events-none absolute -bottom-6 right-0 select-none font-serif
+                   text-[min(14vw,160px)] font-black italic leading-none tracking-tight
+                   text-white/[0.04] dark:text-white/[0.035]"
       >
         Gandhi
       </span>
@@ -55,7 +64,8 @@ const Footer = () => {
           <blockquote className="max-w-xl">
             <p className="font-heading text-xl italic leading-snug text-white/90 sm:text-2xl">
               &ldquo;Real strength isn&apos;t about suppression —{" "}
-              <span className="text-[#C1522A]">it&apos;s about understanding.</span>&rdquo;
+              {/* terracotta accent — same in both themes */}
+              <span className="text-primary">it&apos;s about understanding.</span>&rdquo;
             </p>
           </blockquote>
           <div className="shrink-0 text-right">
@@ -70,6 +80,7 @@ const Footer = () => {
       {/* ── Main grid ── */}
       <div className="relative container mx-auto px-6 py-16 lg:px-8">
         <div className="grid gap-12 md:grid-cols-4">
+
           {/* Brand column */}
           <div>
             <p className="font-heading text-lg tracking-tight text-white">Gandhi University</p>
@@ -86,7 +97,9 @@ const Footer = () => {
               {statPills.map((s) => (
                 <span
                   key={s.label}
-                  className="font-accent rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-white/70"
+                  className="font-accent rounded-full border border-white/10 bg-white/[0.06]
+                             px-3 py-1 text-xs font-semibold
+                             text-white/70 dark:border-white/8 dark:bg-white/[0.04]"
                 >
                   {s.value}{" "}
                   <span className="font-normal text-white/35">{s.label}</span>
@@ -106,8 +119,8 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     className={`rounded-full p-2 transition-colors ${
                       social.accent
-                        ? "bg-red-600/15 text-red-500 hover:bg-red-600/25"
-                        : "bg-white/5 text-white/50 hover:bg-white/10 hover:text-white"
+                        ? "bg-red-600/20 text-red-400 hover:bg-red-600/30"
+                        : "bg-white/[0.06] text-white/45 hover:bg-white/12 hover:text-white"
                     }`}
                     aria-label={`Follow us on ${social.name}`}
                   >
@@ -129,7 +142,7 @@ const Footer = () => {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="font-body text-sm text-white/50 transition-colors hover:text-white"
+                      className="font-body text-sm text-white/50 transition-colors hover:text-white/90"
                     >
                       {link.label}
                     </Link>
@@ -141,7 +154,8 @@ const Footer = () => {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center">
+        <div className="mt-16 flex flex-col items-start justify-between gap-4
+                        border-t border-white/10 pt-8 sm:flex-row sm:items-center">
           <p className="font-body text-xs text-white/25">
             © {new Date().getFullYear()} Gandhi University. All rights reserved.
           </p>
