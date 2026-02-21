@@ -4,6 +4,9 @@ import CourseCard from "@/components/CourseCard";
 import SectionHeading from "@/components/SectionHeading";
 import type { Course } from "@/types/database";
 
+// Cache the page for 1 hour, revalidate in background
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
     title: "Courses — Gandhi University",
     description:
@@ -20,14 +23,15 @@ export default async function CoursesPage() {
 
     const { data: courses, error } = await supabase
         .from("courses")
-        .select("*")
+        // Only fetch columns CourseCard actually needs — skip heavy long_description JSONB
+        .select("id, slug, title, description, price, category, featured")
         .eq("status", "published")
         .is("deleted_at", null)
         .order("featured", { ascending: false })
         .order("created_at", { ascending: true });
 
     // Fallback to empty array on error
-    const courseList: Course[] = courses ?? [];
+    const courseList = (courses ?? []) as Pick<Course, "id" | "slug" | "title" | "description" | "price" | "category" | "featured">[];
 
     return (
         <div className="min-h-screen bg-background pt-24">

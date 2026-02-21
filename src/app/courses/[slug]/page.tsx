@@ -9,6 +9,9 @@ import { Clock, BookOpen, Globe, Tag } from "lucide-react";
 import SyllabusAccordion from "@/components/SyllabusAccordion";
 import type { ChapterWithLessons, Course } from "@/types/database";
 
+// Revalidate course pages every hour
+export const revalidate = 3600;
+
 interface PageProps {
     params: Promise<{ slug: string }>;
 }

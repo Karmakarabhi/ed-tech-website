@@ -9,6 +9,9 @@ import UpcomingSection from "@/components/UpcomingSection";
 import { createClient } from "@/lib/supabase/server";
 import type { Course, Testimonial } from "@/types/database";
 
+// Revalidate ISR cache every hour
+export const revalidate = 3600;
+
 function formatPrice(paise: number): string {
     return `₹${(paise / 100).toLocaleString("en-IN")}`;
 }

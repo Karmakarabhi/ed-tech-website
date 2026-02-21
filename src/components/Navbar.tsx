@@ -38,21 +38,9 @@ const Navbar = () => {
   useEffect(() => {
     const supabase = createClient();
 
-    // Get initial session
-    supabase.auth.getUser().then(async ({ data: { user } }) => {
-      setUser(user);
-      if (user) {
-        const { data } = await supabase
-          .from("profiles")
-          .select("role")
-          .eq("id", user.id)
-          .single();
-        setIsAdmin((data as { role?: string } | null)?.role === "admin");
-      }
-    });
-
-    // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+    // getSession() reads from cookie — no network round-trip
+    // then fetch profile role in one query only when needed
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
       setUser(session?.user ?? null);
       if (session?.user) {
         const { data } = await supabase
@@ -61,7 +49,20 @@ const Navbar = () => {
           .eq("id", session.user.id)
           .single();
         setIsAdmin((data as { role?: string } | null)?.role === "admin");
-      } else {
+      }
+    });
+
+    // Listen for auth state changes (sign in / sign out)
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+      setUser(session?.user ?? null);
+      if (session?.user && (event === "SIGNED_IN" || event === "TOKEN_REFRESHED")) {
+        const { data } = await supabase
+          .from("profiles")
+          .select("role")
+          .eq("id", session.user.id)
+          .single();
+        setIsAdmin((data as { role?: string } | null)?.role === "admin");
+      } else if (event === "SIGNED_OUT") {
         setIsAdmin(false);
       }
     });

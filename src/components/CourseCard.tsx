@@ -64,7 +64,8 @@ const CourseCard = ({
   );
 
   if (slug) {
-    return <Link href={`/courses/${slug}`}>{cardContent}</Link>;
+    // prefetch={false} prevents Next.js from fetching all visible course pages simultaneously
+    return <Link href={`/courses/${slug}`} prefetch={false}>{cardContent}</Link>;
   }
 
   return cardContent;
