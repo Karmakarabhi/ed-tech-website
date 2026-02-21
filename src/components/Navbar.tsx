@@ -145,7 +145,7 @@ const SiteNavbar = () => {
         <div className="relative z-20 flex items-center gap-2">
           {ThemeButton}
           {AuthDesktop}
-          <Button size="sm" className="font-body rounded-full text-sm" asChild>
+          <Button size="sm" className="font-body rounded-full text-sm font-semibold shadow-sm" asChild>
             <Link href="/courses">Start Learning</Link>
           </Button>
         </div>

@@ -46,19 +46,34 @@ const fallbackCourses = [
 
 const fallbackTestimonials = [
     {
-        quote: "This isn't motivation — it's education. I finally understood why I react the way I do, and how to change it.",
+        quote: "This isn't motivation — it's education. I finally understood why I react the way I do, and how to change it. Within 3 weeks, my panic episodes dropped by half.",
         name: "Arjun Mehta",
         context: "Software Engineer, Bangalore",
+        image: "/assets/student1.webp",
     },
     {
-        quote: "The Anxiety Blueprint gave me tools I'll use for life. No fluff, no toxic positivity — just real psychology.",
+        quote: "The Anxiety Blueprint gave me tools I'll use for life. No fluff, no toxic positivity — just real psychology. I've recommended it to five friends already.",
         name: "Rohit Sharma",
         context: "MBA Student, Delhi",
+        image: "/assets/student2.webp",
     },
     {
-        quote: "Gandhi University feels like the serious education in self-mastery that I wish existed when I was 20.",
+        quote: "Gandhi University feels like the serious education in self-mastery that I wish existed when I was 20. The depth here is unmatched.",
         name: "Vikram Rao",
         context: "Doctor, Mumbai",
+        image: "/assets/student3.webp",
+    },
+    {
+        quote: "After the Emotional Intelligence course, I had my first honest conversation with my father in 15 years. That alone was worth every rupee.",
+        name: "Karan Patel",
+        context: "Startup Founder, Ahmedabad",
+        image: "/assets/student4.webp",
+    },
+    {
+        quote: "I went from 'discipline means willpower' to building systems that actually stick. Lost 12 kg and kept it off — because I finally understood the psychology behind habits.",
+        name: "Siddharth Nair",
+        context: "Content Creator, Chennai",
+        image: "/assets/student5.webp",
     },
 ];
 
@@ -84,7 +99,7 @@ export default async function HomePage() {
                 .eq("visible", true)
                 .is("deleted_at", null)
                 .order("sort_order", { ascending: true })
-                .limit(3),
+                .limit(6),
         ]);
 
         if (dbCourses && (dbCourses as unknown[]).length > 0) {
@@ -99,10 +114,11 @@ export default async function HomePage() {
         }
 
         if (dbTestimonials && (dbTestimonials as unknown[]).length > 0) {
-            testimonials = (dbTestimonials as Pick<Testimonial, "quote" | "name" | "context">[]).map((t) => ({
+            testimonials = (dbTestimonials as Pick<Testimonial, "quote" | "name" | "context">[]).map((t, i) => ({
                 quote: t.quote,
                 name: t.name,
                 context: t.context ?? "",
+                image: `/assets/student${(i % 5) + 1}.webp`, // Cycle through student1-5.webp
             }));
         }
     } catch {

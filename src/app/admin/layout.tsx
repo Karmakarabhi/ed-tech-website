@@ -4,6 +4,7 @@ import Link from "next/link";
 import { LayoutDashboard, BookOpen, MessageSquare, Settings, LogOut } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import type { Profile } from "@/types/database";
+import HeaderBar from "@/components/admin/HeaderBar";
 
 const adminNav = [
     { label: "Dashboard", href: "/admin", icon: LayoutDashboard },
@@ -81,12 +82,8 @@ export default async function AdminLayout({
 
             {/* Main */}
             <div className="flex flex-1 flex-col">
-                {/* Top bar (mobile) */}
-                <header className="flex h-16 items-center border-b border-border px-6 md:hidden">
-                    <Link href="/admin" className="font-heading text-lg text-foreground">
-                        GU Admin
-                    </Link>
-                </header>
+                {/* Header Bar */}
+                <HeaderBar userName={displayName} />
 
                 <main className="flex-1 overflow-auto p-6 lg:p-8">{children}</main>
             </div>

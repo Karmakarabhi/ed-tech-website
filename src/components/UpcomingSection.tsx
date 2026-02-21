@@ -98,7 +98,7 @@ const EventCard = ({ event }: { event: UpcomingEvent }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.5 }}
-      className="group flex flex-col rounded-lg border border-border bg-card p-6 shadow-sm transition-shadow hover:shadow-md"
+      className="group flex flex-col rounded-lg border border-border bg-card p-7 sm:p-8 shadow-sm transition-shadow hover:shadow-md"
     >
       <div className="mb-4 flex items-center gap-2">
         <span className="font-accent rounded-md bg-primary/10 px-2.5 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
@@ -119,22 +119,22 @@ const EventCard = ({ event }: { event: UpcomingEvent }) => {
       </div>
 
       {/* Countdown */}
-      <div className="mt-5 rounded-lg bg-secondary p-4">
-        <p className="font-body mb-3 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+      <div className="mt-6 rounded-xl bg-secondary p-5">
+        <p className="font-body mb-4 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
           <Clock className="h-3.5 w-3.5" /> Starts in
         </p>
-        <div className="flex justify-between">
+        <div className="flex items-center justify-between">
           <TimerUnit value={timeLeft.days} label="Days" />
-          <span className="font-accent self-start pt-1 text-2xl text-muted-foreground">:</span>
+          <span className="font-accent text-xl text-muted-foreground/50">:</span>
           <TimerUnit value={timeLeft.hours} label="Hrs" />
-          <span className="font-accent self-start pt-1 text-2xl text-muted-foreground">:</span>
+          <span className="font-accent text-xl text-muted-foreground/50">:</span>
           <TimerUnit value={timeLeft.minutes} label="Min" />
-          <span className="font-accent self-start pt-1 text-2xl text-muted-foreground">:</span>
+          <span className="font-accent text-xl text-muted-foreground/50">:</span>
           <TimerUnit value={timeLeft.seconds} label="Sec" />
         </div>
       </div>
 
-      <motion.div whileTap={{ scale: 0.97 }} className="mt-5">
+      <motion.div whileTap={{ scale: 0.97 }} className="mt-6">
         <Button
           variant={notified ? "default" : "outline"}
           className="font-body relative w-full overflow-hidden text-sm transition-colors duration-300"
@@ -183,7 +183,7 @@ const UpcomingSection = () => {
           title="Upcoming Courses & Workshops"
           description="Reserve your spot in our next evidence-based programs. Limited seats available."
         />
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {upcomingEvents.map((event) => (
             <EventCard key={event.title} event={event} />
           ))}

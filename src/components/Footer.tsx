@@ -1,8 +1,17 @@
+import { Instagram, Twitter, Facebook, Youtube } from "lucide-react";
+
 const footerLinks = {
   Platform: ["All Courses", "Pricing", "Certificates", "Community"],
   Company: ["About", "Blog", "Careers", "Press"],
   Support: ["Help Center", "Contact", "Privacy Policy", "Terms"],
 };
+
+const socialLinks = [
+  { name: "Instagram", icon: Instagram, url: "https://instagram.com/gandhiuniversity" },
+  { name: "X (Twitter)", icon: Twitter, url: "https://x.com/gandhiuni" },
+  { name: "Facebook", icon: Facebook, url: "https://facebook.com/gandhiuniversity" },
+  { name: "YouTube", icon: Youtube, url: "https://youtube.com/@gandhiuniversity" },
+];
 
 const Footer = () => {
   return (
@@ -15,6 +24,25 @@ const Footer = () => {
             <p className="font-body mt-3 text-sm leading-relaxed text-muted-foreground">
               Psychology-driven self-mastery for the modern Indian man.
             </p>
+            
+            {/* Social Links */}
+            <div className="mt-6 flex items-center gap-4">
+              {socialLinks.map((social) => {
+                const Icon = social.icon;
+                return (
+                  <a
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-full p-2 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                    aria-label={`Follow us on ${social.name}`}
+                  >
+                    <Icon className="h-4 w-4" />
+                  </a>
+                );
+              })}
+            </div>
           </div>
 
           {/* Links */}
