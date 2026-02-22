@@ -4,23 +4,23 @@
 
 @layer base {
   :root {
-    --background: 36 33% 93%;
-    --foreground: 24 25% 8%;
+    --background: 36 28% 92%;
+    --foreground: 24 30% 6%;
 
     --card: 0 0% 100%;
-    --card-foreground: 24 25% 8%;
+    --card-foreground: 24 30% 6%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 24 25% 8%;
+    --popover-foreground: 24 30% 6%;
 
-    --primary: 20 65% 47%;
+    --primary: 20 68% 44%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 36 26% 88%;
-    --secondary-foreground: 24 25% 8%;
+    --secondary: 36 22% 86%;
+    --secondary-foreground: 24 30% 6%;
 
-    --muted: 36 26% 88%;
-    --muted-foreground: 30 14% 54%;
+    --muted: 36 22% 86%;
+    --muted-foreground: 30 12% 48%;
 
     --accent: 40 55% 58%;
     --accent-foreground: 24 25% 8%;
@@ -28,20 +28,20 @@
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 36 20% 82%;
-    --input: 36 20% 82%;
-    --ring: 20 65% 47%;
+    --border: 36 18% 78%;
+    --input: 36 18% 78%;
+    --ring: 20 68% 44%;
 
     --radius: 0.625rem;
 
     --sidebar-background: 36 33% 95%;
     --sidebar-foreground: 30 14% 20%;
-    --sidebar-primary: 20 65% 47%;
+    --sidebar-primary: 20 68% 44%;
     --sidebar-primary-foreground: 40 60% 96%;
     --sidebar-accent: 36 26% 88%;
     --sidebar-accent-foreground: 24 25% 8%;
     --sidebar-border: 36 20% 82%;
-    --sidebar-ring: 20 65% 47%;
+    --sidebar-ring: 20 68% 44%;
 
     /* Brand tokens */
     --accent-gold: 40 55% 58%;
@@ -51,23 +51,23 @@
   }
 
   .dark {
-    --background: 30 25% 4%;
-    --foreground: 40 40% 91%;
+    --background: 30 30% 3%;
+    --foreground: 40 35% 93%;
 
-    --card: 33 22% 11%;
-    --card-foreground: 40 40% 91%;
+    --card: 33 24% 9%;
+    --card-foreground: 40 35% 93%;
 
-    --popover: 33 22% 11%;
-    --popover-foreground: 40 40% 91%;
+    --popover: 33 24% 9%;
+    --popover-foreground: 40 35% 93%;
 
-    --primary: 20 76% 57%;
-    --primary-foreground: 30 25% 4%;
+    --primary: 20 78% 58%;
+    --primary-foreground: 30 30% 3%;
 
-    --secondary: 33 20% 8%;
-    --secondary-foreground: 40 40% 91%;
+    --secondary: 33 22% 7%;
+    --secondary-foreground: 40 35% 93%;
 
-    --muted: 33 20% 8%;
-    --muted-foreground: 33 22% 40%;
+    --muted: 33 22% 7%;
+    --muted-foreground: 33 20% 42%;
 
     --accent: 40 80% 66%;
     --accent-foreground: 30 25% 4%;
@@ -75,9 +75,9 @@
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 30 15% 15%;
-    --input: 30 15% 15%;
-    --ring: 20 76% 57%;
+    --border: 30 18% 13%;
+    --input: 30 18% 13%;
+    --ring: 20 78% 58%;
 
     --sidebar-background: 30 25% 4%;
     --sidebar-foreground: 40 40% 91%;
@@ -126,5 +126,28 @@
 
   .font-accent {
     font-family: 'Rajdhani', sans-serif;
+  }
+}
+
+/* Global heading sharpness — adds letter-spacing tightness and rendering clarity */
+@layer base {
+  h1, h2, h3, h4, h5 {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-optical-sizing: auto;
+  }
+
+  /* Improve body text readability */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "kern" 1, "liga" 1;
+    line-height: 1.65;
+  }
+
+  /* Tighten large display headings */
+  .font-display {
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
   }
 }

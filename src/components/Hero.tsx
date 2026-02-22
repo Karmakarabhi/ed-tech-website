@@ -10,7 +10,9 @@ const Hero = () => {
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden pt-24">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/40" />
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/60" />
+      {/* Subtle dark vignette at edges for visual tension */}
+      <div className="absolute inset-0 [background:radial-gradient(ellipse_140%_100%_at_50%_0%,transparent_55%,rgba(0,0,0,0.07)_100%)] dark:[background:radial-gradient(ellipse_140%_100%_at_50%_0%,transparent_40%,rgba(0,0,0,0.45)_100%)] pointer-events-none" />
 
       <div className="container relative z-10 mx-auto px-6 py-24 lg:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
@@ -20,33 +22,35 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-              Psychology-Driven Self-Mastery
+            <p className="mb-6 font-accent text-[11px] font-bold uppercase tracking-[0.28em] text-primary">
+              Gandhi University &mdash; India&apos;s Psychological Performance Institute
             </p>
 
-            {/* Founder personal statement */}
-            <p className="mb-6 font-body text-base leading-relaxed text-muted-foreground">
-              I&apos;m <span className="font-semibold text-foreground">Saurabh Gandhi</span>. I spent
-              a decade studying why Indian men struggle emotionally — and built Gandhi University
-              to give them the tools no one ever offered.
-            </p>
-
-            <h1 className="font-display text-5xl font-bold leading-[1.1] tracking-tight sm:text-6xl lg:text-7xl">
-              Master Your Mind.
+            <h1 className="font-display text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-[4.5rem] xl:text-[5.25rem]">
+              Psychological
               <br />
-              <span className="text-primary">Transform Your Life.</span>
+              Strength Is
+              <br />
+              <span className="text-primary">Trainable.</span>
             </h1>
 
-            <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
-              Evidence-based programs in cognitive psychology, emotional regulation,
-              and discipline — designed for the modern Indian man seeking depth over noise.
+            <p className="mt-6 font-heading text-xl font-medium leading-snug text-foreground/60 sm:text-2xl">
+              Most Men Were Never Taught How.
             </p>
 
-            <div className="mt-10 flex flex-col items-start gap-3">
+            <p className="mt-7 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-[17px]">
+              After a decade of studying why high-functioning men collapse under pressure,
+              Saurabh Gandhi engineered a clinical system — not a curriculum.
+              Structured <strong className="font-semibold text-foreground">protocols</strong>, not
+              motivational content. <strong className="font-semibold text-foreground">Root causes</strong>, not
+              symptom relief.
+            </p>
+
+            <div className="mt-10 flex flex-col items-start gap-4">
               <div className="flex flex-wrap items-center gap-4">
-                <Button size="lg" className="gap-2 text-base" asChild>
+                <Button size="lg" className="gap-2 text-base font-semibold" asChild>
                   <Link href="/courses">
-                    Explore Programs
+                    View Training Protocols
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </Button>
@@ -56,7 +60,7 @@ const Hero = () => {
                 href="#method"
                 className="group inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
               >
-                See How The Method Works
+                See The Gandhi Method™
                 <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>

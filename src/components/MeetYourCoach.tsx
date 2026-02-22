@@ -2,12 +2,30 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Youtube } from "lucide-react";
+import { Youtube, AlertTriangle, Lightbulb } from "lucide-react";
 
 const credentials = [
   { label: "Psychology Expert" },
   { label: "Certified CBT Practitioner" },
   { label: "TEDx Speaker" },
+];
+
+const diagnosticPoints = [
+  {
+    icon: AlertTriangle,
+    label: "The Pattern Observed",
+    text: "Across 10 years and 1.4M subscribers, one pattern repeated: high-functioning men — engineers, founders, professionals — unable to regulate pressure, sustain relationships, or act on their own values. Not from lack of intelligence. From lack of the right psychological architecture.",
+  },
+  {
+    icon: AlertTriangle,
+    label: "Where Modern Advice Fails",
+    text: "The self-help industry offers motivation. Therapy offers dialogue. Neither offers a systematic, masculine framework for restructuring the cognitive and behavioral root causes of psychological collapse. Men leave with insight and no protocol.",
+  },
+  {
+    icon: Lightbulb,
+    label: "Why Men Specifically",
+    text: "Men are socialized against introspection. The failure isn't willpower — it's the absence of a clinical map. Saurabh engineered Gandhi University to fill that gap: structured protocols built around how the male mind actually works under pressure.",
+  },
 ];
 
 const MeetYourCoach = () => {
@@ -25,7 +43,7 @@ const MeetYourCoach = () => {
           transition={{ duration: 0.5 }}
           className="font-accent mb-12 text-xs font-semibold uppercase tracking-[0.22em] text-primary"
         >
-          Meet Your Coach
+          The Man Behind The System
         </motion.p>
 
         <div className="grid items-start gap-14 lg:grid-cols-2 lg:gap-20">
@@ -100,13 +118,13 @@ const MeetYourCoach = () => {
             className="pt-6 lg:pt-4"
           >
             <h2 className="font-heading text-4xl leading-tight text-foreground sm:text-5xl">
-              The Man Behind
+              He Studied The Problem
               <br />
-              <em className="not-italic text-primary">Gandhi University.</em>
+              <em className="not-italic text-primary">For a Decade. Then Built a System.</em>
             </h2>
 
             <p className="font-accent mt-3 text-lg font-medium text-foreground/70">
-              Saurabh Gandhi
+              Saurabh Gandhi — Founder, Gandhi University
             </p>
 
             {/* Credential pills */}
@@ -121,45 +139,46 @@ const MeetYourCoach = () => {
               ))}
             </div>
 
-            <p className="font-body mt-7 text-[15px] leading-relaxed text-foreground/75">
-              Saurabh Gandhi is a <strong>Psychology Expert, Certified CBT Practitioner</strong> and
-              one of India&apos;s most trusted voices in self-mastery. Over the years, he has helped
-              millions of men find their true masculine path — building discipline, speaking with
-              power, and walking away from destructive habits.
-            </p>
-
-            <p className="font-body mt-4 text-[15px] leading-relaxed text-foreground/75">
-              Men who once broke under pressure are now{" "}
-              <strong>building dream careers, leading teams, and earning deep respect</strong>{" "}
-              everywhere they go.
-            </p>
-
-            {/* Pull quote */}
-            <blockquote className="mt-8 border-l-2 border-primary pl-5">
-              <p className="font-heading text-lg italic leading-snug text-foreground">
-                &ldquo;I take away the technical jargon and simplify human behavior for every
-                Indian looking to be their best self.&rdquo;
-              </p>
-            </blockquote>
-
-            <p className="font-body mt-6 text-[15px] leading-relaxed text-foreground/75">
-              People know him as the{" "}
-              <span className="font-semibold text-foreground">&ldquo;go-to psychology guy&rdquo;</span>{" "}
-              — because he makes the complex feel human, and the actionable feel inevitable.
-            </p>
+            {/* Diagnostic points */}
+            <div className="mt-8 space-y-6">
+              {diagnosticPoints.map((point, i) => {
+                const Icon = point.icon;
+                return (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                    className="flex gap-4"
+                  >
+                    <span className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                      <Icon className="h-4 w-4" />
+                    </span>
+                    <div>
+                      <p className="font-accent text-[11px] font-bold uppercase tracking-[0.18em] text-primary mb-1">
+                        {point.label}
+                      </p>
+                      <p className="font-body text-[15px] leading-relaxed text-foreground/75">
+                        {point.text}
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
 
             {/* Mission block */}
-            <div className="mt-8 rounded-xl bg-foreground px-6 py-5 dark:bg-card dark:border dark:border-border">
+            <div className="mt-10 rounded-xl bg-foreground px-6 py-5 dark:bg-card dark:border dark:border-border">
               <p className="font-accent text-[9px] uppercase tracking-[0.22em] text-primary-foreground/40 dark:text-muted-foreground">
                 The Mission
               </p>
               <p className="font-heading mt-2 text-xl leading-snug text-primary-foreground dark:text-foreground">
                 Help{" "}
                 <span className="text-primary">1.4 Billion Indians</span>{" "}
-                understand and actualize their true potential.
+                understand and actualize their true potential — through systems, not slogans.
               </p>
             </div>
-
           </motion.div>
         </div>
       </div>

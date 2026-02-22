@@ -2,13 +2,16 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Brain, Heart, Target, BookOpen } from "lucide-react";
+import { Brain, Heart, Target, BookOpen, Shield } from "lucide-react";
 
 // Map categories to icons for quick visual differentiation
 const categoryIcons: Record<string, React.ReactNode> = {
   "CBT & Anxiety": <Brain className="h-4 w-4" />,
   "Emotional Mastery": <Heart className="h-4 w-4" />,
   "Personal Growth": <Target className="h-4 w-4" />,
+  "Foundation Protocol": <Brain className="h-4 w-4" />,
+  "Authority Protocol": <Target className="h-4 w-4" />,
+  "Discipline Protocol": <Shield className="h-4 w-4" />,
 };
 
 // Brief "who it's for" by category to help users self-select
@@ -16,6 +19,9 @@ const idealFor: Record<string, string> = {
   "CBT & Anxiety": "For men dealing with overthinking & constant worry",
   "Emotional Mastery": "For men who struggle to process or express emotions",
   "Personal Growth": "For men building lasting habits through self-understanding",
+  "Foundation Protocol": "For men dealing with chronic anxiety, overthinking & pressure collapse",
+  "Authority Protocol": "For men who want to command rooms, lead people & project grounded confidence",
+  "Discipline Protocol": "For men who understand psychology but can't convert insight into lasting behavior",
 };
 
 interface CourseCardProps {
@@ -45,15 +51,15 @@ const CourseCard = ({
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.5 }}
       whileHover={{ scale: 1.02, y: -4 }}
-      className={`group relative flex flex-col rounded-lg border bg-card p-6 shadow-sm transition-shadow hover:shadow-md cursor-pointer ${
+      className={`group relative flex flex-col rounded-xl border bg-card p-7 shadow-sm transition-all hover:shadow-lg hover:border-primary/30 cursor-pointer ${
         featured
           ? "ring-2 ring-primary border-primary/30 shadow-primary/10"
           : "border-border"
       }`}
     >
       {featured && (
-        <div className="font-accent absolute top-0 right-0 rounded-bl-lg rounded-tr-lg bg-primary px-3 py-1.5 text-xs font-semibold text-primary-foreground">
-          Popular
+        <div className="font-accent absolute top-0 right-0 rounded-bl-lg rounded-tr-lg bg-primary px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-primary-foreground">
+          Core Protocol
         </div>
       )}
 
@@ -62,7 +68,7 @@ const CourseCard = ({
         {category}
       </span>
 
-      <h3 className="font-heading mt-4 text-xl text-card-foreground">
+      <h3 className="font-heading mt-4 text-xl font-bold text-card-foreground leading-tight sm:text-2xl">
         {title}
       </h3>
 
@@ -81,7 +87,7 @@ const CourseCard = ({
           {price}
         </span>
         <span className="font-body text-sm font-medium text-primary transition-colors group-hover:underline">
-          View Course →
+          View Protocol →
         </span>
       </div>
     </motion.div>

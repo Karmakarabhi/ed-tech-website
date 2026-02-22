@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "sonner";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -55,10 +53,8 @@ export default function RootLayout({
                     enableSystem={false}
                     storageKey="gandhi-theme"
                     disableTransitionOnChange
-                >
-                    <Navbar />
-                    <main>{children}</main>
-                    <Footer />
+                >  
+                    {children}
                     <Toaster />
                 </ThemeProvider>
             </body>
