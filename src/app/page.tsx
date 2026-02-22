@@ -98,7 +98,7 @@ export default async function HomePage() {
                 .limit(3),
             supabase
                 .from("testimonials")
-                .select("quote, name, context")
+                .select("quote, name, context, image_url")
                 .eq("visible", true)
                 .is("deleted_at", null)
                 .order("sort_order", { ascending: true })
@@ -117,11 +117,12 @@ export default async function HomePage() {
         }
 
         if (dbTestimonials && (dbTestimonials as unknown[]).length > 0) {
-            testimonials = (dbTestimonials as Pick<Testimonial, "quote" | "name" | "context">[]).map((t, i) => ({
+            testimonials = (dbTestimonials as Pick<Testimonial, "quote" | "name" | "context" | "image_url">[]).map((t, i) => ({
                 quote: t.quote,
                 name: t.name,
                 context: t.context ?? "",
-                image: `/assets/student${(i % 5) + 1}.webp`, // Cycle through student1-5.webp
+                // Use uploaded photo if available, otherwise fall back to placeholder
+                image: t.image_url ?? `/assets/student${(i % 5) + 1}.webp`,
             }));
         }
     } catch {
