@@ -125,14 +125,21 @@ export default function AnimatedTestimonials({
             exit={{ opacity: 0, y: -24 }}
             transition={{ duration: 0.35, ease: "easeInOut" }}
           >
-            <p className="font-heading text-2xl font-bold text-foreground">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/8 px-3 py-1">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+              <span className="font-accent text-[10px] font-bold uppercase tracking-[0.2em] text-primary">
+                Outcome Record
+              </span>
+            </div>
+
+            <p className="font-heading text-2xl font-bold text-foreground leading-snug">
               {testimonials[active].name}
             </p>
-            <p className="font-accent mt-1 text-sm text-primary">
+            <p className="font-accent mt-1.5 text-sm font-semibold text-primary/80">
               {testimonials[active].context}
             </p>
 
-            <p className="font-body mt-6 text-base leading-relaxed text-muted-foreground">
+            <p className="font-body mt-6 text-[15px] leading-[1.75] text-muted-foreground">
               {testimonials[active].quote}
             </p>
           </motion.div>

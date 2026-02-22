@@ -113,7 +113,22 @@ export default function TestimonialsClient({ initial }: TestimonialsClientProps)
                                 </div>
                             ) : (
                                 <div className="flex items-start justify-between gap-4">
-                                    <div className="space-y-1 flex-1">
+                                    <div className="flex items-start gap-3 flex-1 min-w-0">
+                                        {/* Avatar thumbnail */}
+                                        {t.image_url ? (
+                                            <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full border border-border">
+                                                <img
+                                                    src={t.image_url}
+                                                    alt={t.name}
+                                                    className="h-full w-full object-cover"
+                                                />
+                                            </div>
+                                        ) : (
+                                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border bg-secondary text-xs font-semibold text-muted-foreground">
+                                                {t.name.charAt(0)}
+                                            </div>
+                                        )}
+                                        <div className="space-y-1 flex-1 min-w-0">
                                         <p className="font-body text-sm text-foreground italic">
                                             &ldquo;{t.quote}&rdquo;
                                         </p>
@@ -131,6 +146,10 @@ export default function TestimonialsClient({ initial }: TestimonialsClientProps)
                                             <span className="text-xs text-muted-foreground">
                                                 Order: {t.sort_order}
                                             </span>
+                                            {!t.image_url && (
+                                                <span className="text-xs text-amber-500">No photo</span>
+                                            )}
+                                        </div>
                                         </div>
                                     </div>
                                     <div className="flex shrink-0 items-center gap-1">

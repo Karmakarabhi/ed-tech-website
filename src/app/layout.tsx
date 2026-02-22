@@ -1,12 +1,21 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "sonner";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
     title: "Gandhi University — Psychology-Driven Self-Mastery Programs",
+    icons: {
+        icon: [
+            { url: "/favicon.ico", sizes: "any" },
+            { url: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
+            { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+        ],
+        apple: [
+            { url: "/assets/favicon.png", type: "image/png", sizes: "180x180" },
+        ],
+        shortcut: "/favicon.ico",
+    },
     description:
         "Evidence-based psychology programs for Indian men. Master your mind through CBT, emotional intelligence, discipline, and depth psychology. Built on research, not hype.",
     keywords: [
@@ -44,10 +53,8 @@ export default function RootLayout({
                     enableSystem={false}
                     storageKey="gandhi-theme"
                     disableTransitionOnChange
-                >
-                    <Navbar />
-                    <main>{children}</main>
-                    <Footer />
+                >  
+                    {children}
                     <Toaster />
                 </ThemeProvider>
             </body>

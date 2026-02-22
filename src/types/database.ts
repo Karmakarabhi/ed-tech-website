@@ -242,6 +242,7 @@ export type Database = {
           quote: string;
           name: string;
           context: string | null;
+          image_url: string | null;
           visible: boolean;
           sort_order: number;
           created_at: string;
@@ -252,6 +253,7 @@ export type Database = {
           quote: string;
           name: string;
           context?: string | null;
+          image_url?: string | null;
           visible?: boolean;
           sort_order?: number;
           created_at?: string;
@@ -262,6 +264,7 @@ export type Database = {
           quote?: string;
           name?: string;
           context?: string | null;
+          image_url?: string | null;
           visible?: boolean;
           sort_order?: number;
           created_at?: string;

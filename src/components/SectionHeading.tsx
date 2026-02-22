@@ -19,15 +19,15 @@ const SectionHeading = ({ label, title, description, align = "left" }: SectionHe
       className={align === "center" ? "text-center" : ""}
     >
       {label && (
-        <p className="font-accent mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+        <p className="font-accent mb-4 text-[11px] font-bold uppercase tracking-[0.28em] text-primary">
           {label}
         </p>
       )}
-      <h2 className="font-heading text-3xl text-foreground sm:text-4xl lg:text-5xl">
+      <h2 className="font-heading text-4xl font-bold text-foreground sm:text-5xl lg:text-[3.25rem] leading-tight">
         {title}
       </h2>
       {description && (
-        <p className="font-body mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
+        <p className="font-body mt-5 max-w-2xl text-[17px] leading-relaxed text-muted-foreground">
           {description}
         </p>
       )}
